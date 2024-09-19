@@ -1,0 +1,57 @@
+﻿<MudCard Style="width: 300px;">
+    <MudCardHeader>
+        <CardHeaderAvatar>
+            <MudAvatar Color="Color.Secondary">@Trigramme</MudAvatar>
+        </CardHeaderAvatar>
+
+        <CardHeaderContent>
+            <MudText Typo="Typo.body1">@Name</MudText>
+            <MudText Typo="Typo.body2">@Poste</MudText>
+        </CardHeaderContent>
+
+        <CardHeaderActions>
+            <MudIconButton Icon="@Icons.Material.Filled.Settings" Color="Color.Default" />
+        </CardHeaderActions>
+
+    </MudCardHeader>
+    
+    <center>
+        <MudImage Src="https://th.bing.com/th/id/OIP.XwdccgZ0onnFeQQVzEuD3AHaLG?rs=1&pid=ImgDetMain" Width="237" Height="355" Alt="Photo du profil" Elevation="25" Class="rounded-lg ma-4" />
+    </center>
+
+    <MudCardContent>
+        <MudText Typo="Typo.body2">Téléphone : @PhoneNumber</MudText>
+        <MudText Typo="Typo.body2">Mail : @Mail</MudText> 
+    </MudCardContent>
+
+
+    <MudCardContent Class="d-flex justify-center">
+            @if (Libre == true)
+            {
+            <MudButton Variant="Variant.Filled" Color="Color.Error" Class="ml-5 mr-5">En Mission</MudButton>
+            }
+            else
+            {
+            <MudButton Variant="Variant.Filled" Color="Color.Success" Class="ml-5 mr-5">Libre</MudButton>
+            }
+
+        <MudButton Variant="Variant.Filled" Color="Color.Warning" Class="ml-5 mr-5" OnClick="@(async () => await OpenDDCInformationAsync())">DDC</MudButton>
+    </MudCardContent>
+
+    <MudButton Variant="Variant.Filled" Color="Color.Error" OnClick="@(async () => await OpenDDCInformationAsync())">Delete</MudButton>
+    <MudChip T="string">@_state</MudChip>
+    
+    <MudMessageBox @ref="_mudMessageBox" Title="Warning" CancelText="Cancel">
+        <MessageContent>
+            Deleting can <b><i>not</i></b> be undone!
+        </MessageContent>
+        <YesButton>
+            <MudButton Variant="Variant.Filled" Color="Color.Error" StartIcon="@Icons.Material.Filled.DeleteForever">Delete!</MudButton>
+        </YesButton>
+    </MudMessageBox>
+
+    <MudCardActions>
+        <MudIconButton Icon="@Icons.Material.Filled.Favorite" Color="Color.Default" />
+        <MudIconButton Icon="@Icons.Material.Filled.Share" Color="Color.Default" />
+    </MudCardActions>
+</MudCard>
