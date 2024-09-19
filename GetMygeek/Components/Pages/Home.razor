@@ -1,7 +1,12 @@
 ﻿@page "/"
 
-<PageTitle>Home</PageTitle>
+<PageTitle>GetMyGeek</PageTitle>
 
-<h1>Hello, world!</h1>
 
-Welcome to your new app.
+<MudInput Placeholder="Jean-guy" Type="string" @bind-Value="input" Style="align-items:center; justify-content:center;"/>
+
+
+
+@code{
+    private string input;
+}
