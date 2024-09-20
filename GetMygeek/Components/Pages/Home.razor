@@ -6,10 +6,10 @@
 
 <div Style="height: 90vh;" Class="d-flex justify-center" Elevation="0">
     <div Class="d-flex flex-column gap-4 @isInResearch">
-        <div Class="d-flex justify-center gap-4">
+        <div Class="d-flex justify-center gap-4 @isInResearch">
             <MudInput Placeholder="Rechercher un consultant" Type="string" @bind-Value="input" style="width:350px; height:50px;"
-                Variant="Variant.Outlined" Class="@isInResearch" />
-            <MudButton Variant="Variant.Filled" Color="Color.Dark" Style="height:50px; width:180px" Class="@isInResearch"
+                Variant="Variant.Outlined" Class="align-self-center"/>
+            <MudButton Variant="Variant.Filled" Color="Color.Dark" Style="height:50px; width:180px"
                 EndIcon="@Icons.Material.Filled.PersonSearch" @onclick="() => onClickRechercher()">Rechercher</MudButton>
         </div>
 
@@ -23,7 +23,7 @@
                 </MudSelectItem>
             </MudSelect>  
 
-            <MudTextField @bind-Value="anciennete" Label="Anciennete" Variant="Variant.Outlined" Style="width:250px"/> 
+            <MudTextField @bind-Value="anciennete" Label="Anciennete minimale" Variant="Variant.Outlined" Style="width:250px"/> 
 
             <MudSelect T="string" Label="Mission recherchee" Variant="Variant.Outlined" MultiSelection="true" @bind-Value="value" @bind-SelectedValues="profilesSelected" Style="width:250px;">
                 @foreach (var profile in profiles)
