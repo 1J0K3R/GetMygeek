@@ -3,7 +3,10 @@
 <PageTitle>GetMyGeek</PageTitle>
 
 
-<MudInput Placeholder="Jean-guy" Type="string" @bind-Value="input" Style="align-items:center; justify-content:center;"/>
+<div Style="height: 90vh;" Class="d-flex justify-center gap-4" Elevation="0">
+    <MudInput Placeholder="Rechercher un consultant" Type="string" @bind-Value="input" style="width:350px; height:50px;" Variant="Variant.Outlined" Class="align-self-center"/>
+    <MudButton Variant="Variant.Filled" Color="Color.Dark" Style="height:50px; width:180px" Class="align-self-center" EndIcon="@Icons.Material.Filled.PersonSearch">Rechercher</MudButton>
+</div>
 
 
 
