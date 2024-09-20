@@ -1,15 +1,27 @@
 ﻿@page "/"
+@rendermode InteractiveServer
 
 <PageTitle>GetMyGeek</PageTitle>
 
 
 <div Style="height: 90vh;" Class="d-flex justify-center gap-4" Elevation="0">
-    <MudInput Placeholder="Rechercher un consultant" Type="string" @bind-Value="input" style="width:350px; height:50px;" Variant="Variant.Outlined" Class="align-self-center"/>
-    <MudButton Variant="Variant.Filled" Color="Color.Dark" Style="height:50px; width:180px" Class="align-self-center" EndIcon="@Icons.Material.Filled.PersonSearch">Rechercher</MudButton>
+    <MudInput Placeholder="Rechercher un consultant" Type="string" @bind-Value="input" style="width:350px; height:50px;"
+        Variant="Variant.Outlined" Class="@centerButtonsVertically" />
+    <MudButton Variant="Variant.Filled" Color="Color.Dark" Style="height:50px; width:180px" Class="@centerButtonsVertically"
+        EndIcon="@Icons.Material.Filled.PersonSearch" @onclick="() => onClickRechercher()">Rechercher</MudButton>
+
 </div>
 
 
 
-@code{
+
+@code {
     private string input;
+    private string centerButtonsVertically {get; set;} = "align-self-center";
+
+    private void onClickRechercher()
+    {
+        centerButtonsVertically = "mt-5";
+        StateHasChanged();
+    }
 }
