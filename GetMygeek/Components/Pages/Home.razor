@@ -4,35 +4,36 @@
 <PageTitle>GetMyGeek</PageTitle>
 
 
-<div Style="height: 90vh;" Class="d-flex justify-center gap-4 flex-column" Elevation="0">
+<div Style="height: 90vh;" Class="d-flex justify-center" Elevation="0">
+    <div Class="d-flex flex-column gap-4 @isInResearch">
+        <div Class="d-flex justify-center gap-4">
+            <MudInput Placeholder="Rechercher un consultant" Type="string" @bind-Value="input" style="width:350px; height:50px;"
+                Variant="Variant.Outlined" Class="@isInResearch" />
+            <MudButton Variant="Variant.Filled" Color="Color.Dark" Style="height:50px; width:180px" Class="@isInResearch"
+                EndIcon="@Icons.Material.Filled.PersonSearch" @onclick="() => onClickRechercher()">Rechercher</MudButton>
+        </div>
 
-    <div Class="d-flex justify-center gap-4">
-        <MudInput Placeholder="Rechercher un consultant" Type="string" @bind-Value="input" style="width:350px; height:50px;"
-            Variant="Variant.Outlined" Class="@centerButtonsVertically" />
-        <MudButton Variant="Variant.Filled" Color="Color.Dark" Style="height:50px; width:180px" Class="@centerButtonsVertically"
-            EndIcon="@Icons.Material.Filled.PersonSearch" @onclick="() => onClickRechercher()">Rechercher</MudButton>
+        <div Class="d-flex justify-center gap-4 align-self-center" Style="max-width: 1000px;">
+            <MudSelect @bind-Value="available" Label="Disponibilite" Variant="Variant.Outlined" Style="width:250px;">
+                <MudSelectItem Value="@("disponible")">
+                    <MudIcon Icon="@Icons.Material.Filled.Check" height="14" class="mr-1" /> Disponible
+                </MudSelectItem>
+                <MudSelectItem Value="@("en mission")">
+                    <MudIcon Icon="@Icons.Material.Filled.Cancel" height="14" class="mr-1" /> En mission
+                </MudSelectItem>
+            </MudSelect>  
+
+            <MudTextField @bind-Value="anciennete" Label="Anciennete" Variant="Variant.Outlined" Style="width:250px"/> 
+
+            <MudSelect T="string" Label="Mission recherchee" Variant="Variant.Outlined" MultiSelection="true" @bind-Value="value" @bind-SelectedValues="profilesSelected" Style="width:250px;">
+                @foreach (var profile in profiles)
+                {
+                    <MudSelectItem T="string" Value="@profile">@profile</MudSelectItem>
+                }
+            </MudSelect>
+            </div>
     </div>
-
-    <div Class="d-flex justify-center gap-4 align-self-center" Style="max-width: 1000px;">
-        @* ancienneté, disponibilité, recherche dev/tech/infra en vrai faudrait dmd direct à des IA mais bon flemme de les déranger*@
-        <MudSelect @bind-Value="available" Label="Disponibilite" Variant="Variant.Outlined" Style="width:250px;">
-            <MudSelectItem Value="@("disponible")">
-                <MudIcon Icon="@Icons.Material.Filled.Check" height="14" class="mr-1" /> Disponible
-            </MudSelectItem>
-            <MudSelectItem Value="@("en mission")">
-                <MudIcon Icon="@Icons.Material.Filled.Cancel" height="14" class="mr-1" /> En mission
-            </MudSelectItem>
-        </MudSelect>  
-
-        <MudTextField @bind-Value="anciennete" Label="Anciennete" Variant="Variant.Outlined" Style="width:250px"/> 
-
-        <MudSelect T="string" Label="Mission recherchee" Variant="Variant.Outlined" MultiSelection="true" @bind-Value="value" @bind-SelectedValues="profilesSelected" Style="width:250px;">
-            @foreach (var profile in profiles)
-            {
-                <MudSelectItem T="string" Value="@profile">@profile</MudSelectItem>
-            }
-        </MudSelect>
-    </div>
+    
     
 </div>
 
@@ -41,7 +42,7 @@
 
 @code {
     private string input {get; set;}
-    private string centerButtonsVertically {get; set;} = "align-self-center";
+    private string isInResearch {get; set;} = "align-self-center";
     private string available {get; set;}
     private int anciennete {get; set;}
     private string[] profiles = {"Dev", "Fonctionnel", "Infrastructures"};
@@ -54,7 +55,7 @@
         foreach(string elt in profilesSelected){
             Console.WriteLine(elt);
         }
-        centerButtonsVertically = "mt-5";
+        isInResearch = "mt-5";
         StateHasChanged();
     }
 }
