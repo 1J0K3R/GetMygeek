@@ -35,19 +35,16 @@
             <MudButton Variant="Variant.Filled" Color="Color.Success" Class="ml-5 mr-5">Libre</MudButton>
             }
 
-        <MudButton Variant="Variant.Filled" Color="Color.Warning" Class="ml-5 mr-5" OnClick="@(async () => await OpenDDCInformationAsync())">DDC</MudButton>
+        <MudButton Variant="Variant.Filled" Color="Color.Warning" Class="ml-5 mr-5" @onclick="async () => await OpenDDCInformationAsync()">DDC</MudButton>
     </MudCardContent>
-
-    <MudButton Variant="Variant.Filled" Color="Color.Error" OnClick="@(async () => await OpenDDCInformationAsync())">Delete</MudButton>
-    <MudChip T="string">@_state</MudChip>
-    
-    <MudMessageBox @ref="_mudMessageBox" Title="Warning" CancelText="Cancel">
+        
+    <MudMessageBox @ref="_mudMessageBox" Title="Dossier De Compétences">
         <MessageContent>
-            Deleting can <b><i>not</i></b> be undone!
+            <b>Compétences Technique :</b> C#
+            <br/>
+            <b>Compétences Fonctionnel :</b> Scrum [Animation de sprint review retro etc...]
+
         </MessageContent>
-        <YesButton>
-            <MudButton Variant="Variant.Filled" Color="Color.Error" StartIcon="@Icons.Material.Filled.DeleteForever">Delete!</MudButton>
-        </YesButton>
     </MudMessageBox>
 
     <MudCardActions>

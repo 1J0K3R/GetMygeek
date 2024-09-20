@@ -24,16 +24,17 @@ namespace GetMygeek.Components.Pages
         public bool Libre { get; set; }
 
         #region DDC Message Box
-        private MudMessageBox _mudMessageBox;
-        private string _state = "Message box hasn't been opened yet";
+        public MudMessageBox _mudMessageBox;
 
+
+        /// <summary>
+        /// Cette fonction permet d'afficher la fenetre MudMessage qui contient le DDC [Dossier De Compétence]
+        /// </summary>
+        /// <returns></returns>
         public async Task OpenDDCInformationAsync()
         {
             bool? result = await _mudMessageBox.ShowAsync();
-            _state = result is null ? "Canceled" : "Deleted!";
-            StateHasChanged();
-
-            Console.WriteLine("azzrerefre");
+            //StateHasChanged();
         }
         #endregion
     }

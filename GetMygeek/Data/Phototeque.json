@@ -1,0 +1,69 @@
+﻿{
+  "Phototeques": [
+    {
+      "Id": 1,
+      "Name": "Paysage de montagne",
+      "Title": "Montagne au lever du soleil",
+      "Description": "Une magnifique vue sur les montagnes avec le soleil se levant à l'horizon.",
+      "ImageUrl": "https://example.com/images/montagne.jpg",
+      "IsFree": true,
+      "Ddc": {
+        "Id": 101,
+        "CompetenceTechnique": "Photographie de paysage",
+        "CompetenceFonctionnel": "Observation de la nature"
+      }
+    },
+    {
+      "Id": 2,
+      "Name": "Plage tropicale",
+      "Title": "Coucher de soleil sur la plage",
+      "Description": "Une vue pittoresque d'une plage tropicale avec des cocotiers.",
+      "ImageUrl": "https://example.com/images/plage.jpg",
+      "IsFree": false,
+      "Ddc": {
+        "Id": 102,
+        "CompetenceTechnique": "Photographie de nature",
+        "CompetenceFonctionnel": "Maîtrise des lumières"
+      }
+    },
+    {
+      "Id": 3,
+      "Name": "Forêt d'automne",
+      "Title": "Forêt en automne",
+      "Description": "Une forêt avec des feuilles dorées et oranges en automne.",
+      "ImageUrl": "https://example.com/images/foret.jpg",
+      "IsFree": true,
+      "Ddc": {
+        "Id": 103,
+        "CompetenceTechnique": "Photographie en plein air",
+        "CompetenceFonctionnel": "Compréhension des couleurs"
+      }
+    },
+    {
+      "Id": 4,
+      "Name": "Ville moderne",
+      "Title": "Panorama de la ville de nuit",
+      "Description": "Un panorama d'une ville moderne avec des gratte-ciels illuminés.",
+      "ImageUrl": "https://example.com/images/ville.jpg",
+      "IsFree": false,
+      "Ddc": {
+        "Id": 104,
+        "CompetenceTechnique": "Photographie urbaine",
+        "CompetenceFonctionnel": "Gestion de l'éclairage nocturne"
+      }
+    },
+    {
+      "Id": 5,
+      "Name": "Désert",
+      "Title": "Dunes de sable au coucher du soleil",
+      "Description": "De vastes dunes de sable dans un désert doré par la lumière du soleil couchant.",
+      "ImageUrl": "https://example.com/images/desert.jpg",
+      "IsFree": true,
+      "Ddc": {
+        "Id": 105,
+        "CompetenceTechnique": "Photographie de désert",
+        "CompetenceFonctionnel": "Gestion des conditions extrêmes"
+      }
+    }
+  ]
+}
