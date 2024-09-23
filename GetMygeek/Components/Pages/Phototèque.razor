@@ -36,7 +36,7 @@
     {
         try
         {
-            FileStream fileStream = File.OpenRead("C:\\Users\\jgiroud\\source\\repos\\GetMygeek\\GetMygeek\\Data\\Phototeque.json");
+            FileStream fileStream = File.OpenRead("Data/Phototeque.json");
             return await JsonSerializer.DeserializeAsync<ListPhototeque>(fileStream);
         }
         catch (Exception ex)
