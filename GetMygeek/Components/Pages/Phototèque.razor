@@ -1,5 +1,6 @@
 ﻿@using GetMygeek.Models
 @using System.Text.Json
+@using static GetMygeek.Components.Pages.Home
 
 <MudGrid Spacing="10" Justify="Justify.Center">
     @if (phototequeList != null && phototequeList.Phototeques.Count > 0)
@@ -19,6 +20,9 @@
 
 
 @code{
+    [Parameter]
+    public ResearchQuery researchQuery { get; set; }
+
     private ListPhototeque phototequeList;
 
     protected override async Task OnInitializedAsync()
