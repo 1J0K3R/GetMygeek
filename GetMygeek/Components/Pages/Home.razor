@@ -52,9 +52,9 @@
     </div>  
 </div>
 
-@if (researchQuery != null)
+@if (researchQuery.IsImplement())
     {
-        <Phototèque ResearchQuery = researchQuery />
+        <Phototèque ResearchQuery = "@researchQuery" />
     }
     else
     {
@@ -69,12 +69,16 @@
 
     private ResearchQuery researchQuery = new();
     private string isInResearch { get; set; } = "height: 90vh;";
-    private string[] profiles = {"Dev", "Fonctionnel", "Infrastructures"};
+    private string[] profiles = { "Dev", "Fonctionnel", "Infrastructures" };
     private string value { get; set; } = "Nothing selected";
-    
+
 
     private void onClickRechercher()
     {
+        if (string.IsNullOrEmpty(researchQuery.input))
+        {
+            researchQuery.input = "";
+        }
         isInResearch = "height: 25vh;";
         StateHasChanged();
     }
