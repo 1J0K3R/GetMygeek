@@ -1,4 +1,5 @@
-﻿using Microsoft.AspNetCore.Components;
+﻿using GetMygeek.Models;
+using Microsoft.AspNetCore.Components;
 using MudBlazor;
 
 namespace GetMygeek.Components.Pages
@@ -6,22 +7,7 @@ namespace GetMygeek.Components.Pages
     public partial class Card
     {
         [Parameter]
-        public string Trigramme { get; set; }
-
-        [Parameter]
-        public string Name { get; set; }
-
-        [Parameter]
-        public string Poste { get; set; }
-
-        [Parameter]
-        public string PhoneNumber { get; set; }
-
-        [Parameter]
-        public string Mail { get; set; }
-
-        [Parameter]
-        public bool Libre { get; set; }
+        public Phototeque Profil { get; set; }
 
         #region DDC Message Box
         public MudMessageBox _mudMessageBox;
@@ -34,7 +20,6 @@ namespace GetMygeek.Components.Pages
         public async Task OpenDDCInformationAsync()
         {
             bool? result = await _mudMessageBox.ShowAsync();
-            //StateHasChanged();
         }
         #endregion
     }
