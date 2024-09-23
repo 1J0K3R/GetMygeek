@@ -3,20 +3,36 @@
 
 <PageTitle>GetMyGeek</PageTitle>
 
-<div Style="height: 90vh;" Class="d-flex justify-center" Elevation="0">
-    <div Class="d-flex flex-column gap-4 @isInResearch">
-        <div Class="d-flex justify-center gap-4 @isInResearch">
-            <MudInput Placeholder="Rechercher un consultant" Type="string" @bind-Value="researchQuery.input" style="width:350px; height:50px;"
-                Variant="Variant.Outlined" Class="align-self-center"/>
-            <MudButton Variant="Variant.Filled" Color="Color.Dark" Style="height:50px; width:180px"
-                EndIcon="@Icons.Material.Filled.PersonSearch" @onclick="() => onClickRechercher()">Rechercher</MudButton>
+<div Style="@isInResearch" Class="d-flex justify-center" Elevation="0">
+    <div Class="d-flex flex-column gap-4 align-self-center">
+        <div Class="d-flex justify-center gap-4 align-self-center">
+            <MudInput 
+                Placeholder="Rechercher un consultant" 
+                Type="string" 
+                @bind-Value="researchQuery.input" 
+                style="width:350px; height:50px;"
+                Variant="Variant.Outlined" 
+                Class="align-self-center"/>
+
+            <MudButton 
+                Variant="Variant.Filled" 
+                Color="Color.Dark" 
+                Style="height:50px; width:180px"
+                EndIcon="@Icons.Material.Filled.PersonSearch" 
+                @onclick="() => onClickRechercher()">Rechercher</MudButton>
         </div>
 
         <div Class="d-flex justify-center gap-4 align-self-center" Style="max-width: 1000px;">
-            <MudSelect @bind-Value="researchQuery.available" Label="Disponibilite" Variant="Variant.Outlined" Style="width:250px;">
+            <MudSelect 
+                @bind-Value="researchQuery.available" 
+                Label="Disponibilite" 
+                Variant="Variant.Outlined" 
+                Style="width:250px;">
+
                 <MudSelectItem Value="@("disponible")">>
                     <MudIcon Icon="@Icons.Material.Filled.Check" height="14" class="mr-1" /> Disponible
                 </MudSelectItem>
+
                 <MudSelectItem Value="@("en mission")">
                     <MudIcon Icon="@Icons.Material.Filled.Cancel" height="14" class="mr-1" /> En mission
                 </MudSelectItem>
@@ -30,17 +46,12 @@
                     <MudSelectItem T="string" Value="@profile">@profile</MudSelectItem>
                 }
             </MudSelect>
-          
-             <br />
 
-            <Phototèque/>
-            </div>
-    </div>
-    
-    
+        </div>
+    </div>  
 </div>
 
-
+<Phototèque />
 
 
 
@@ -51,22 +62,18 @@
         public string available {get; set;}
         public int anciennete {get; set;}
         public IEnumerable<string> profilesSelected { get; set; } = new HashSet<string>() {};
-        public override string ToString(){
-            return "input " + input + ", available " + available + ", anciennete " + anciennete.ToString() + ", " + string.Join(", ", profilesSelected);
-        }
     }
 
 
     private ResearchQuery researchQuery = new();
-    private string isInResearch {get; set;} = "align-self-center";
+    private string isInResearch { get; set; } = "height: 90vh;";
     private string[] profiles = {"Dev", "Fonctionnel", "Infrastructures"};
     private string value { get; set; } = "Nothing selected";
     
 
     private void onClickRechercher()
     {
-        isInResearch = "mt-5";
+        isInResearch = "height: 25vh;";
         StateHasChanged();
-        Console.WriteLine(researchQuery.ToString());
     }
 }
