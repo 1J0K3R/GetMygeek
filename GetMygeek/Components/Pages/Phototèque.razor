@@ -1,0 +1,48 @@
+﻿@using GetMygeek.Models
+@using System.Text.Json
+<center>
+    <h1>BIENVENUE DANS LA PHOTOTEQUE</h1>
+</center>
+<br />
+
+<MudGrid Spacing="10" Justify="Justify.Center">
+    @if (phototequeList != null && phototequeList.Phototeques.Count > 0)
+    {
+        @foreach (var profil in phototequeList.Phototeques)
+        {
+            <MudItem>
+                <Card Profil="@profil"/>
+            </MudItem>
+        }
+    }
+    else
+    {
+        <MudText>Chargement des données...</MudText>
+    }
+</MudGrid>
+
+
+@code{
+    private ListPhototeque phototequeList;
+
+    protected override async Task OnInitializedAsync()
+    {
+        // Lire et désérialiser le fichier JSON lors de l'initialisation
+        phototequeList = await ReadJsonFileAsync();
+    }
+
+    // Méthode pour lire et désérialiser le fichier JSON
+    private async Task<ListPhototeque> ReadJsonFileAsync()
+    {
+        try
+        {
+            FileStream fileStream = File.OpenRead("C:\\Users\\jgiroud\\source\\repos\\GetMygeek\\GetMygeek\\Data\\Phototeque.json");
+            return await JsonSerializer.DeserializeAsync<ListPhototeque>(fileStream);
+        }
+        catch (Exception ex)
+        {
+            Console.WriteLine($"Erreur lors de la lecture du fichier JSON : {ex.Message}");
+            return null;
+        }
+    }
+}
