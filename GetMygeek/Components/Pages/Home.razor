@@ -4,53 +4,7 @@
 
 <PageTitle>GetMyGeek</PageTitle>
 
-<div Style="@isInResearch" Class="d-flex justify-center" Elevation="0">
-    <div Class="d-flex flex-column gap-4 align-self-center">
-        <div Class="d-flex justify-center gap-4 align-self-center">
-            <MudInput 
-                Placeholder="Rechercher un consultant" 
-                Type="string" 
-                @bind-Value="researchQuery.Input" 
-                style="width:350px; height:50px;"
-                Variant="Variant.Outlined" 
-                Class="align-self-center"/>
-
-            <MudButton 
-                Variant="Variant.Filled" 
-                Color="Color.Dark" 
-                Style="height:50px; width:180px"
-                EndIcon="@Icons.Material.Filled.PersonSearch" 
-                @onclick="() => onClickRechercher()">Rechercher</MudButton>
-        </div>
-
-        <div Class="d-flex justify-center gap-4 align-self-center" Style="max-width: 1000px;">
-            <MudSelect 
-                @bind-Value="researchQuery.Available" 
-                Label="Disponibilite" 
-                Variant="Variant.Outlined" 
-                Style="width:250px;">
-
-                <MudSelectItem Value="@("disponible")">
-                    <MudIcon Icon="@Icons.Material.Filled.Check" height="14" class="mr-1" /> Disponible
-                </MudSelectItem>
-
-                <MudSelectItem Value="@("enMission")">
-                    <MudIcon Icon="@Icons.Material.Filled.Cancel" height="14" class="mr-1" /> En mission
-                </MudSelectItem>
-            </MudSelect>  
-
-            <MudTextField @bind-Value="researchQuery.Anciennete" Label="Anciennete minimale" Variant="Variant.Outlined" Style="width:250px"/> 
-
-            <MudSelect T="string" Label="Mission recherchee" Variant="Variant.Outlined" MultiSelection="true" @bind-Value="value" @bind-SelectedValues="researchQuery.ProfilesSelected" Style="width:250px;">
-                @foreach (var profile in profiles)
-                {
-                    <MudSelectItem T="string" Value="@profile">@profile</MudSelectItem>
-                }
-            </MudSelect>
-
-        </div>
-    </div>  
-</div>
+<SearchComponant ResearchQuery="@researchQuery" OnSearch="@UpdateResearchQuery" />
 
 @if (researchQuery.IsImplement())
 {
@@ -61,32 +15,16 @@
     /// <summary>
     /// L'objet representant la recherche lancee par l'utilisateur
     /// </summary>
-    private ResearchQuery researchQuery = new();
+    public ResearchQuery researchQuery = new();
 
     /// <summary>
-    /// Une variable permettant de changer l'affichage de la page quand on appuie sur rechercher
+    /// Cette méthode est appelée lorsque la recherche est déclenchée dans le composant enfant
+    /// Permet la récupération d'un objet retournée par l'enfant
     /// </summary>
-    private string isInResearch { get; set; } = "height: 90vh;";
-
-    /// <summary>
-    /// La liste des types de mission possibles
-    /// </summary>
-    private string[] profiles = { "Dev", "Fonctionnel", "Infrastructures" };
-
-    private string value { get; set; } = "Nothing selected";
-
-
-    /// <summary>   
-    /// La methode appelee quand on clique sur rechercher. Met a jour l'affichage, et genere la requete SQL liee aux champs saisis.
-    /// </summary>
-    private void onClickRechercher()
+    /// <param name="updatedResearchQuery"></param>
+    private void UpdateResearchQuery(ResearchQuery updatedResearchQuery)
     {
-        if (string.IsNullOrEmpty(researchQuery.Input))
-        {
-            researchQuery.Input = "";
-        }
-        isInResearch = "height: 25vh;";
-        StateHasChanged();
-        researchQuery.GenerateSQL();
+        researchQuery = updatedResearchQuery;
+        StateHasChanged(); 
     }
 }

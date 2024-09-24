@@ -4,6 +4,7 @@
 <MudPopoverProvider />
 <MudDialogProvider />
 <MudSnackbarProvider />
+
 <MudLayout>
     <MudAppBar Elevation="1">
         <MudIconButton Icon="@Icons.Material.Filled.Menu" Color="Color.Inherit" Edge="Edge.Start" OnClick="@((e) => DrawerToggle())" />
@@ -13,9 +14,11 @@
         <MudIconButton Icon="@Icons.Material.Filled.MoreVert" Color="Color.Inherit" Edge="Edge.End" />
         <MudImage src="images/solutec-logo.png" Alt="Solutech logo" Style="Height:90%; Width:Auto;"/>
     </MudAppBar>
+
     <MudDrawer @bind-Open="_drawerOpen" ClipMode="DrawerClipMode.Always" Elevation="2">
         <MudNavMenu />
     </MudDrawer>
+
     <MudMainContent Class="mt-16 pa-4">
         @Body
     </MudMainContent>
