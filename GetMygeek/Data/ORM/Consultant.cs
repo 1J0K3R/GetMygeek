@@ -7,7 +7,7 @@ public class Consultant
     public string Tel { get; set; }
     public string Mail { get; set; }
     public string DdcUrl { get; set; }
-    public int IdMission { get; set; }
+    public int? IdMission { get; set; }
     public string ResponsableCarriere { get; set; }
     public int Anciennete { get; set; }
     public string Disponibilite { get; set; }
