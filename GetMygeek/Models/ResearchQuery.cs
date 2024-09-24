@@ -1,6 +1,4 @@
-﻿using System.Runtime.CompilerServices;
-
-namespace GetMygeek.Models;
+﻿namespace GetMygeek.Models;
 public class ResearchQuery
 {
     /// <summary>

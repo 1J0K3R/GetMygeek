@@ -76,7 +76,6 @@
         }
         isInResearch = "height: 21vh;";
         StateHasChanged();
-        researchQuery.GenerateSQL();
 
         // Appel du callback pour notifier le parent
         await OnSearch.InvokeAsync(researchQuery);

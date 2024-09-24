@@ -3,9 +3,9 @@
 @using static GetMygeek.Components.Pages.Home
 
 <MudGrid Spacing="10" Justify="Justify.Center">
-    @if (phototequeList != null && phototequeList.Phototeques.Count > 0)
+    @if (listeProfil != null && listeProfil.Phototeques.Count > 0)
     {
-        @foreach (var profil in phototequeList.Phototeques)
+        @foreach (var profil in listeProfil.Phototeques)
         {
             <MudItem>
                 <Card Profil="@profil"/>
@@ -20,24 +20,36 @@
 
 
 @code{
+    /// <summary>
+    /// Un parametre pour recuperer les parametres rentres dans la recherche
+    /// </summary>
     [Parameter]
     public ResearchQuery? researchQuery { get; set; }
 
-    private ListPhototeque phototequeList;
+    /// <summary>
+    /// L'objet contenant tous les profils'
+    /// </summary>
+    private ListeProfil listeProfil;
 
+    /// <summary>
+    /// Methode d'initialisation de l'objet
+    /// </summary>
+    /// <returns></returns>
     protected override async Task OnInitializedAsync()
     {
         // Lire et désérialiser le fichier JSON lors de l'initialisation
-        phototequeList = await ReadJsonFileAsync();
+        listeProfil = await GetListeProfilBySqlRequestAsync();
     }
 
     // Méthode pour lire et désérialiser le fichier JSON
-    private async Task<ListPhototeque> ReadJsonFileAsync()
+    private async Task<ListeProfil> GetListeProfilBySqlRequestAsync()
     {
+        // A partir des paramètres de ResearchQuery on efféctue l'appelle SQL
+        // researchQuery.GenerateSQLRequest();
         try
         {
             FileStream fileStream = File.OpenRead("Data/Phototeque.json");
-            return await JsonSerializer.DeserializeAsync<ListPhototeque>(fileStream);
+            return await JsonSerializer.DeserializeAsync<ListeProfil>(fileStream);
         }
         catch (Exception ex)
         {

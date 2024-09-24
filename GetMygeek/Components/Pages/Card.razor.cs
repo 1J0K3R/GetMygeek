@@ -9,7 +9,7 @@ public partial class Card
     /// Objet Profil qui contient toutes les informations d'un consultant 
     /// </summary
     [Parameter]
-    public Phototeque Profil { get; set; }
+    public Profil Profil { get; set; }
 
     /// <summary>
     /// Popup qui récupère et affiche la mission du consultant

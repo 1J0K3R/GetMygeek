@@ -1,5 +1,5 @@
 ﻿namespace GetMygeek.Models;
-public class Phototeque
+public class Profil
 {
     public int Id { get; set; }
     public string Name { get; set; }
