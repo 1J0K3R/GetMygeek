@@ -1,4 +1,6 @@
-﻿namespace GetMygeek.Models;
+﻿using System.Runtime.CompilerServices;
+
+namespace GetMygeek.Models;
 public class ResearchQuery
 {
     public string Input { get; set; } = null;
@@ -77,7 +79,6 @@ public class ResearchQuery
                 }
             }
         }
-
         SQLRequest+=";";
         Console.WriteLine(SQLRequest);
         return SQLRequest;
