@@ -1,46 +1,47 @@
 ﻿@using GetMygeek.Models
-<div Style="@isInResearch" Class="d-flex flex-column gap-4 justify-center align-self-center" Elevation="0">
-        <div Class="d-flex justify-center gap-4 align-self-center">
-            <MudInput Placeholder="Rechercher un consultant"
-                      Type="string"
-                      @bind-Value="researchQuery.Input"
-                      style="width:350px; height:50px;"
-                      Variant="Variant.Outlined"
-                      Class="align-self-center" />
 
-            <MudButton Variant="Variant.Filled"
-                       Color="Color.Dark"
-                       Style="height:50px; width:180px"
-                       EndIcon="@Icons.Material.Filled.PersonSearch"
-                       @onclick="() => onClickRechercher()">Rechercher</MudButton>
-        </div>
+<EditForm Model="@researchQuery" OnValidSubmit="onClickRechercher" Style="@isInResearch" Class="d-flex flex-column gap-4 justify-center align-self-center" Elevation="0">
+    <div Class="d-flex justify-center gap-4 align-self-center">
+        <MudInput Placeholder="Rechercher un consultant"
+                    Type="string"
+                    @bind-Value="researchQuery.Input"
+                    style="width:350px; height:50px;"
+                    Variant="Variant.Outlined"
+                    Class="align-self-center" />
 
-        <div Class="d-flex justify-center gap-4 align-self-center" Style="max-width: 1000px;">
-            <MudSelect @bind-Value="researchQuery.Available"
-                       Label="Disponibilite"
-                       Variant="Variant.Outlined"
-                       Style="width:250px;">
+    <MudButton ButtonType="ButtonType.Submit" 
+                    Variant="Variant.Filled"
+                    Color="Color.Dark"
+                    Style="height:50px; width:180px"
+                    EndIcon="@Icons.Material.Filled.PersonSearch">Rechercher</MudButton>
+    </div>
 
-                <MudSelectItem Value="@("disponible")">
-                    <MudIcon Icon="@Icons.Material.Filled.Check" height="14" class="mr-1" /> Disponible
-                </MudSelectItem>
+    <div Class="d-flex justify-center gap-4 align-self-center" Style="max-width: 1000px;">
+        <MudSelect @bind-Value="researchQuery.Available"
+                    Label="Disponibilite"
+                    Variant="Variant.Outlined"
+                    Style="width:250px;">
 
-                <MudSelectItem Value="@("enMission")">
-                    <MudIcon Icon="@Icons.Material.Filled.Cancel" height="14" class="mr-1" /> En mission
-                </MudSelectItem>
-            </MudSelect>
+            <MudSelectItem Value="@("disponible")">
+                <MudIcon Icon="@Icons.Material.Filled.Check" height="14" class="mr-1" /> Disponible
+            </MudSelectItem>
 
-            <MudTextField @bind-Value="researchQuery.Anciennete" Label="Anciennete minimale" Variant="Variant.Outlined" Style="width:250px" />
+            <MudSelectItem Value="@("enMission")">
+                <MudIcon Icon="@Icons.Material.Filled.Cancel" height="14" class="mr-1" /> En mission
+            </MudSelectItem>
+        </MudSelect>
 
-            <MudSelect T="string" Label="Mission recherchee" Variant="Variant.Outlined" MultiSelection="true" @bind-SelectedValues="researchQuery.ProfilesSelected" Style="width:250px;">
-                @foreach (var profile in profiles)
-                {
-                    <MudSelectItem T="string" Value="@profile">@profile</MudSelectItem>
-                }
-            </MudSelect>
+        <MudTextField @bind-Value="researchQuery.Anciennete" Label="Anciennete minimale" Variant="Variant.Outlined" Style="width:250px" />
 
-        </div>
-</div>
+        <MudSelect T="string" Label="Mission recherchee" Variant="Variant.Outlined" MultiSelection="true" @bind-SelectedValues="researchQuery.ProfilesSelected" Style="width:250px;">
+            @foreach (var profile in profiles)
+            {
+                <MudSelectItem T="string" Value="@profile">@profile</MudSelectItem>
+            }
+        </MudSelect>
+
+    </div>
+</EditForm>
 
 @code {
     /// <summary>
