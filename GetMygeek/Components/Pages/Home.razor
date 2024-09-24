@@ -10,7 +10,7 @@
             <MudInput 
                 Placeholder="Rechercher un consultant" 
                 Type="string" 
-                @bind-Value="researchQuery.input" 
+                @bind-Value="researchQuery.Input" 
                 style="width:350px; height:50px;"
                 Variant="Variant.Outlined" 
                 Class="align-self-center"/>
@@ -25,7 +25,7 @@
 
         <div Class="d-flex justify-center gap-4 align-self-center" Style="max-width: 1000px;">
             <MudSelect 
-                @bind-Value="researchQuery.available" 
+                @bind-Value="researchQuery.Available" 
                 Label="Disponibilite" 
                 Variant="Variant.Outlined" 
                 Style="width:250px;">
@@ -34,14 +34,14 @@
                     <MudIcon Icon="@Icons.Material.Filled.Check" height="14" class="mr-1" /> Disponible
                 </MudSelectItem>
 
-                <MudSelectItem Value="@("en mission")">
+                <MudSelectItem Value="@("enMission")">
                     <MudIcon Icon="@Icons.Material.Filled.Cancel" height="14" class="mr-1" /> En mission
                 </MudSelectItem>
             </MudSelect>  
 
-            <MudTextField @bind-Value="researchQuery.anciennete" Label="Anciennete minimale" Variant="Variant.Outlined" Style="width:250px"/> 
+            <MudTextField @bind-Value="researchQuery.Anciennete" Label="Anciennete minimale" Variant="Variant.Outlined" Style="width:250px"/> 
 
-            <MudSelect T="string" Label="Mission recherchee" Variant="Variant.Outlined" MultiSelection="true" @bind-Value="value" @bind-SelectedValues="researchQuery.profilesSelected" Style="width:250px;">
+            <MudSelect T="string" Label="Mission recherchee" Variant="Variant.Outlined" MultiSelection="true" @bind-Value="value" @bind-SelectedValues="researchQuery.ProfilesSelected" Style="width:250px;">
                 @foreach (var profile in profiles)
                 {
                     <MudSelectItem T="string" Value="@profile">@profile</MudSelectItem>
@@ -71,11 +71,12 @@
 
     private void onClickRechercher()
     {
-        if (string.IsNullOrEmpty(researchQuery.input))
+        if (string.IsNullOrEmpty(researchQuery.Input))
         {
-            researchQuery.input = "";
+            researchQuery.Input = "";
         }
         isInResearch = "height: 25vh;";
         StateHasChanged();
+        researchQuery.GenerateSQL();
     }
 }
