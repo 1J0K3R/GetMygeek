@@ -1,0 +1,33 @@
+CREATE TABLE Consultant (
+    IdConsultant INT PRIMARY KEY,
+    Nom VARCHAR(50) NOT NULL,
+    tel VARCHAR(10),
+    mail VARCHAR(100),
+    ddc VARCHAR(200),
+    idMission INT,
+    ResponsableCarriere VARCHAR(50),
+    anciennete INT,
+    disponibilite VARCHAR(20),
+    idPrefDomain INT,
+    photo VARCHAR(200),
+    FOREIGN KEY (idMission) REFERENCES Mission(idMission),
+    FOREIGN KEY (idPrefDomain) REFERENCES PreferenceDomaine(idPrefDomain)
+);
+
+-- Création de la table Mission
+CREATE TABLE Mission (
+    idMission INT PRIMARY KEY,
+    idConsultant INT,
+    entreprise VARCHAR(50),
+    responsableMission VARCHAR(50),
+    ficheDePoste VARCHAR(200),
+    FOREIGN KEY (idConsultant) REFERENCES Consultant(IdConsultant)
+);
+
+-- Création de la table PreferenceDomaine
+CREATE TABLE PreferenceDomaine (
+    idPrefDomain INT PRIMARY KEY,
+    dev BOOLEAN,
+    fonctionnel BOOLEAN,
+    infra BOOLEAN
+);
