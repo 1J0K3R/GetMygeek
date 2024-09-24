@@ -1,5 +1,7 @@
-﻿namespace GetMygeek.Models;
+﻿using GetMygeek.Data.ORM;
+
+namespace GetMygeek.Models;
 public class ListeProfil
 {
-    public List<Profil> Phototeques { get; set; }
+    public List<Consultant> Consultants { get; set; }
 }

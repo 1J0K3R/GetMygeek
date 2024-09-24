@@ -1,11 +1,10 @@
 ﻿@using GetMygeek.Models
 @using System.Text.Json
-@using static GetMygeek.Components.Pages.Home
 
 <MudGrid Spacing="10" Justify="Justify.Center">
-    @if (listeProfil != null && listeProfil.Phototeques.Count > 0)
+    @if (listeProfil != null && listeProfil.Consultants.Count > 0)
     {
-        @foreach (var profil in listeProfil.Phototeques)
+        @foreach (var profil in listeProfil.Consultants)
         {
             <MudItem>
                 <Card Profil="@profil"/>
@@ -49,7 +48,9 @@
         try
         {
             FileStream fileStream = File.OpenRead("Data/Phototeque.json");
-            return await JsonSerializer.DeserializeAsync<ListeProfil>(fileStream);
+            ListeProfil listeProfil = await JsonSerializer.DeserializeAsync<ListeProfil>(fileStream);
+
+            return listeProfil;
         }
         catch (Exception ex)
         {

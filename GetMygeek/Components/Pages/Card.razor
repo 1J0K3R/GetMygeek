@@ -1,12 +1,12 @@
 ﻿<MudCard Style="width: 300px;">
     <MudCardHeader>
         <CardHeaderAvatar>
-            <MudAvatar Color="Color.Secondary">@Profil.NameTrigramme</MudAvatar>
+            <MudAvatar Color="Color.Secondary">@Profil.Trigramme</MudAvatar>
         </CardHeaderAvatar>
 
         <CardHeaderContent>
-            <MudText Typo="Typo.body1">@Profil.Name</MudText>
-            <MudText Typo="Typo.body2">@Profil.Title</MudText>
+            <MudText Typo="Typo.body1">@Profil.Nom</MudText>
+            <MudText Typo="Typo.body2">@preferenceDomainString</MudText>
         </CardHeaderContent>
 
         <CardHeaderActions>
@@ -21,20 +21,24 @@
 
 
     <MudCardContent>
-        <MudText Typo="Typo.body2">Téléphone : @Profil.PhoneNumber</MudText>
+        <MudText Typo="Typo.body2">Téléphone : @Profil.Tel</MudText>
         <MudText Typo="Typo.body2">Mail : @Profil.Mail</MudText>
     </MudCardContent>
 
 
     <MudCardContent Class="d-flex justify-center">
-            @if (Profil.IsFree == true)
-            {
+        @if (Profil.Disponibilite == "enMission")
+        {
             <MudButton Variant="Variant.Filled" Color="Color.Error" Class="ml-5 mr-5" @onclick="async () => await OpenMissionInformationAsync()">En Mission</MudButton>
-            }
-            else
-            {
+        }
+        else if (Profil.Disponibilite == "disponible")
+        {
             <MudButton Variant="Variant.Filled" Color="Color.Success" Class="ml-5 mr-5" >Libre</MudButton>
-            }
+        }
+        else
+        {
+            <MudButton Variant="Variant.Filled" Color="Color.Error" Class="ml-5 mr-5">Une erreure est survenue !</MudButton>
+        }
 
 
         <MudButton Href="https://chatgpt.com/" Target="_blank" Variant="Variant.Filled" Color="Color.Warning" Class="ml-5 mr-5">DDC</MudButton>
