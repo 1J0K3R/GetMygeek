@@ -43,10 +43,10 @@ public class ResearchQuery
         bool firstCondition = true;
 
         if(Input!=null || Available!=null || Anciennete!=null || ProfilesSelected.Count()!=0){
-            SQLRequest+="WHERE ";
+            
 
-            if(Input!=null){
-                SQLRequest+="C.Nom='" + Input + "' ";
+            if(Input!=""){
+                SQLRequest+="WHERE C.Nom LIKE '%" + Input + "%' ";
                 firstCondition=false;
             }
 
@@ -55,6 +55,7 @@ public class ResearchQuery
                     SQLRequest+="AND ";
                 }
                 else{
+                    SQLRequest+="WHERE ";
                     firstCondition=false;
                 }
                 SQLRequest+= "C.disponibilite= '" + Available + "' ";
@@ -64,9 +65,10 @@ public class ResearchQuery
                     SQLRequest+="AND ";
                 }
                 else{
+                    SQLRequest+="WHERE ";
                     firstCondition=false;
                 }
-                SQLRequest+= "C.anciennete=" + Anciennete + " ";
+                SQLRequest+= "C.anciennete>=" + Anciennete + " ";
             }
             if(ProfilesSelected.Count()!=0){
                 if(ProfilesSelected.Contains("Dev")){
@@ -74,6 +76,7 @@ public class ResearchQuery
                         SQLRequest+="AND ";
                     }
                     else{
+                        SQLRequest+="WHERE ";
                         firstCondition=false;
                     }
                     SQLRequest+= "P.dev=true ";
@@ -83,6 +86,7 @@ public class ResearchQuery
                         SQLRequest+="AND ";
                     }
                     else{
+                        SQLRequest+="WHERE ";
                         firstCondition=false;
                     }
                     SQLRequest+= "P.fonctionnel=true ";
@@ -92,6 +96,7 @@ public class ResearchQuery
                         SQLRequest+="AND ";
                     }
                     else{
+                        SQLRequest+="WHERE ";
                         firstCondition=false;
                     }
                     SQLRequest+= "P.infra=true ";
