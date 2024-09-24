@@ -3,9 +3,24 @@
 namespace GetMygeek.Models;
 public class ResearchQuery
 {
+    /// <summary>
+    /// Le contenu du champs rechercher.
+    /// </summary>
     public string Input { get; set; } = null;
+
+    /// <summary>
+    /// La disponibilite du consultant recherche. Peut prendre les valeurs null, disponible, enMission.
+    /// </summary>
     public string Available { get; set; } = null;
+
+    /// <summary>
+    /// L'anciennete minimale du consultant recherche.
+    /// </summary>
     public int? Anciennete { get; set; } = null;
+
+    /// <summary>
+    /// Une liste des types de missions recherchees par le consultant.
+    /// </summary>
     public IEnumerable<string> ProfilesSelected { get; set; } = new HashSet<string>() { };
 
     public bool IsImplement()
@@ -19,6 +34,10 @@ public class ResearchQuery
         }
     }
 
+    /// <summary>
+    /// Une méthode qui analyse le contenu des filtres et de la barre de recherche et génère une requete SQL correspondante.
+    /// </summary>
+    /// <returns>requete SQL (string)</returns>
     public string GenerateSQL(){
         string SQLRequest = "SELECT C.* FROM Consultant C JOIN PreferenceDomaine P ON C.idPrefDomain = P.idPrefDomain ";
         bool firstCondition = true;

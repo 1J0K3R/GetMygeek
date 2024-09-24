@@ -62,13 +62,27 @@
 
 
 @code {
-
+    /// <summary>
+    /// L'objet representant la recherche lancee par l'utilisateur
+    /// </summary>
     private ResearchQuery researchQuery = new();
+
+    /// <summary>
+    /// Une variable permettant de changer l'affichage de la page quand on appuie sur rechercher
+    /// </summary>
     private string isInResearch { get; set; } = "height: 90vh;";
+
+    /// <summary>
+    /// La liste des types de mission possibles
+    /// </summary>
     private string[] profiles = { "Dev", "Fonctionnel", "Infrastructures" };
+
     private string value { get; set; } = "Nothing selected";
 
 
+    /// <summary>   
+    /// La methode appelee quand on clique sur rechercher. Met a jour l'affichage, et genere la requete SQL liee aux champs saisis.
+    /// </summary>
     private void onClickRechercher()
     {
         if (string.IsNullOrEmpty(researchQuery.Input))
