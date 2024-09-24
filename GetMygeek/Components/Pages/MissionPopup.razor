@@ -1,0 +1,62 @@
+﻿@using GetMygeek.Models
+<MudMessageBox @ref="mudMessageBox" Title="Description de la mission">
+    <MessageContent>
+        La mission en cours est réalisée chez <b> @Mission.Entreprise </b>
+
+        <br />
+        
+        <b> @Mission.ResponsableMission </b> est responsable de cette mission.
+
+        <br />
+        <br />
+
+        <b> Fiche de poste : </b> @Mission.FicheDePoste
+
+    </MessageContent>
+</MudMessageBox>
+
+@code {
+    /// <summary>
+    /// Id du consultant pour lequel on souhaite récupérer la mission en cours
+    /// </summary>
+    [Parameter]
+    public string IdConsultant { get; set; }
+
+    /// <summary>
+    /// Permet le référencement du Popup 
+    /// </summary>
+    private MudMessageBox mudMessageBox;
+
+    /// <summary>
+    /// Objet de la mission implémenté par la base de donnée
+    /// </summary>
+    private Mission Mission { get; set; }
+
+    /// <summary>
+    /// Permet au code appellant d'afficher la Popup
+    /// </summary>
+    /// <returns></returns>
+    public async Task ShowAsync()
+    {
+        Mission = await GetMissionBySqlRequestAsync();
+
+        await mudMessageBox.ShowAsync();
+    }
+
+    private async Task<Mission> GetMissionBySqlRequestAsync()
+    {
+        // Récupération de la mission avec l'IdConsultant
+
+        // Implémentation de la mission 
+        Mission resultMission = new()
+        {
+            Id = "123456789",
+            IdConsultant = "23456789",
+            Entreprise = "Solutec",
+            ResponsableMission = "Benoit l'Ingénieur d'Affaire",
+            FicheDePoste = "Description du poste",
+        };
+
+        return resultMission;
+    }
+}

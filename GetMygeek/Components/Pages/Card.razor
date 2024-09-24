@@ -28,24 +28,17 @@
     <MudCardContent Class="d-flex justify-center">
             @if (Profil.IsFree == true)
             {
-            <MudButton Variant="Variant.Filled" Color="Color.Error" Class="ml-5 mr-5">En Mission</MudButton>
+            <MudButton Variant="Variant.Filled" Color="Color.Error" Class="ml-5 mr-5" @onclick="async () => await OpenMissionInformationAsync()">En Mission</MudButton>
             }
             else
             {
-            <MudButton Variant="Variant.Filled" Color="Color.Success" Class="ml-5 mr-5">Libre</MudButton>
+            <MudButton Variant="Variant.Filled" Color="Color.Success" Class="ml-5 mr-5" >Libre</MudButton>
             }
 
-        <MudButton Variant="Variant.Filled" Color="Color.Warning" Class="ml-5 mr-5" @onclick="async () => await OpenDDCInformationAsync()">DDC</MudButton>
+        <MudButton Variant="Variant.Filled" Color="Color.Warning" Class="ml-5 mr-5" >DDC</MudButton>
     </MudCardContent>
-        
-    <MudMessageBox @ref="_mudMessageBox" Title="Dossier De Compétences">
-        <MessageContent>
-            <b>Compétences Technique :</b> C#
-            <br/>
-            <b>Compétences Fonctionnel :</b> Scrum [Animation de sprint review retro etc...]
 
-        </MessageContent>
-    </MudMessageBox>
+    <MissionPopup @ref="missionPopup" />
 
     <MudCardActions>
         <MudIconButton Icon="@Icons.Material.Filled.Favorite" Color="Color.Default" />
