@@ -1,33 +1,88 @@
 CREATE TABLE Consultant (
-    IdConsultant INT PRIMARY KEY,
+    IdConsultant INT AUTO_INCREMENT PRIMARY KEY,
     Nom VARCHAR(50) NOT NULL,
     tel VARCHAR(10),
     mail VARCHAR(100),
-    ddc VARCHAR(200),
+    ddcUrl VARCHAR(400),
     idMission INT,
     ResponsableCarriere VARCHAR(50),
     anciennete INT,
     disponibilite VARCHAR(20),
     idPrefDomain INT,
-    photo VARCHAR(200),
+    ImageUrl VARCHAR(400),
+    Trigramme VARCHAR(5),
     FOREIGN KEY (idMission) REFERENCES Mission(idMission),
     FOREIGN KEY (idPrefDomain) REFERENCES PreferenceDomaine(idPrefDomain)
 );
 
--- Création de la table Mission
+
 CREATE TABLE Mission (
-    idMission INT PRIMARY KEY,
-    idConsultant INT,
+    idMission INT AUTO_INCREMENT PRIMARY KEY,
     entreprise VARCHAR(50),
     responsableMission VARCHAR(50),
-    ficheDePoste VARCHAR(200),
-    FOREIGN KEY (idConsultant) REFERENCES Consultant(IdConsultant)
+    ficheDePoste VARCHAR(400),
 );
 
--- Création de la table PreferenceDomaine
+
 CREATE TABLE PreferenceDomaine (
-    idPrefDomain INT PRIMARY KEY,
+    idPrefDomain INT AUTO_INCREMENT PRIMARY KEY,
     dev BOOLEAN,
     fonctionnel BOOLEAN,
     infra BOOLEAN
 );
+
+
+
+INSERT INTO PreferenceDomaine (dev, fonctionnel, infra)
+VALUES
+    (TRUE, FALSE, FALSE),
+    (FALSE, TRUE, FALSE),
+    (FALSE, FALSE, TRUE),
+    (TRUE, TRUE, FALSE), 
+    (FALSE, TRUE, TRUE),
+    (TRUE, FALSE, TRUE),
+    (TRUE, TRUE, TRUE),  
+    (FALSE, FALSE, FALSE);
+
+
+
+INSERT INTO Mission (entreprise, responsableMission, ficheDePoste)
+VALUES
+    ('Enedis', 'Paul Martin', 'https://enedis.com/ficheDePoste'),
+    ('Apicil', 'Marie Durand', 'https://apicil.com/ficheDePoste'),
+    ('EDF', 'Jean Dupont', 'https://edf.com/ficheDePoste'),
+    ('SNCF', 'Alain Bernard', 'https://sncf.com/ficheDePoste'),
+    ('Volvo', 'Sophie Petit', 'https://volvo.com/ficheDePoste'),
+    ('Enedis', 'Paul Martin', 'https://enedis.com/ficheDePoste'),
+    ('Apicil', 'Marie Durand', 'https://apicil.com/ficheDePoste'),
+    ('EDF', 'Jean Dupont', 'https://edf.com/ficheDePoste'),
+    ('SNCF', 'Alain Bernard', 'https://sncf.com/ficheDePoste'),
+    ('Volvo', 'Sophie Petit', 'https://volvo.com/ficheDePoste');
+
+
+INSERT INTO Consultant (Nom, tel, mail, ddc, idMission, ResponsableCarriere, anciennete, disponibilite, idPrefDomain, photo, Trigramme)
+VALUES
+    ('Benoît Chardon', '0601020304', 'benoit.chardon@consultants-solutec.fr', 'https://benoit.com/photo', 1, 'Jean Dupont', 5, 'enMission', 1, 'https://th.bing.com/th/id/R.5f075c720674a279c5790415cc4b83dc?rik=0hUwWG7mvf10DA&pid=ImgRaw&r=0', 'BCH'),
+    ('Alice Dupuis', '0611020304', 'alice.dupuis@consultants-solutec.fr', 'https://alice.com/photo', NULL, 'Marie Durand', 2, 'disponible', 2, 'https://th.bing.com/th/id/OIP.Sxi58lqoVlw_v9PmuMEP3AHaJ4?rs=1&pid=ImgDetMain', 'ADU'),
+    ('Thomas Martin', '0621020304', 'thomas.martin@consultants-solutec.fr', 'https://thomas.com/photo', 2, 'Alain Martin', 4, 'enMission', 3, 'https://www.studiovalmy.fr/wp-content/uploads/2018/11/portrait-professionnel-studio-valmy21.jpg', 'TMA'),
+    ('Emma Petit', '0631020304', 'emma.petit@consultants-solutec.fr', 'https://emma.com/photo', 3, 'Sophie Petit', 3, 'enMission', 4, 'https://th.bing.com/th/id/R.e8d7534e6232ca1a27ba9946f9d93d64?rik=f7G4IqCzRsXAUg&pid=ImgRaw&r=0', 'EPE'),
+    ('Lucas Lefevre', '0641020304', 'lucas.lefevre@consultants-solutec.fr', 'https://lucas.com/photo', 4, 'Paul Lefevre', 6, 'enMission', 5, 'https://th.bing.com/th/id/R.3ce0de73dfa380b9559d265cace27142?rik=OvLVKZUaNar5FQ&pid=ImgRaw&r=0', 'LLF'),
+    ('Julie Laurent', '0651020304', 'julie.laurent@consultants-solutec.fr', 'https://julie.com/photo', NULL, 'Jean Dupont', 1, 'disponible', 6, 'https://th.bing.com/th/id/R.f0ae41f92685ee4f21ea50bfa88de368?rik=Qwf%2bBFUkrVcuOQ&pid=ImgRaw&r=0', 'JLA'),
+    ('Matthieu Dupont', '0661020304', 'matthieu.dupont@consultants-solutec.fr', 'https://matthieu.com/photo', 5, 'Marie Durand', 7, 'enMission', 7, 'https://www.sylvaingelineau.com/wp-content/uploads/2020/12/portrait-professionnel-corporate-editorial-cv-linkedin-toulouse-DSC1494-%C2%A9-Sylvain-Gelineau-Photographism.jpg', 'MDU'),
+    ('Clara Rousseau', '0671020304', 'clara.rousseau@consultants-solutec.fr', 'https://clara.com/photo', 6, 'Alain Martin', 8, 'enMission', 1, 'https://th.bing.com/th/id/OIP.0h_2Qe2sB6B_kUh5zG-BRAHaLH?rs=1&pid=ImgDetMain', 'CRR'),
+    ('Antoine Leroy', '0681020304', 'antoine.leroy@consultants-solutec.fr', 'https://antoine.com/photo', 7, 'Sophie Petit', 9, 'enMission', 2, 'https://th.bing.com/th/id/OIP.WA_jjTHW_p5WMaV2Malh5QHaLH?rs=1&pid=ImgDetMain', 'ALR'),
+    ('Eva Simon', '0691020304', 'eva.simon@consultants-solutec.fr', 'https://eva.com/photo', NULL, 'Paul Lefevre', 10, 'disponible', 3, 'https://www.studio-annlizbonin.com/wp-content/uploads/2022/11/portrait-professionnel-studioannlizbonin-2.jpg', 'ESI'),
+    ('Hugo Lambert', '0701020304', 'hugo.lambert@consultants-solutec.fr', 'https://hugo.com/photo', 6, 'Jean Dupont', 2, 'enMission', 1, 'https://th.bing.com/th/id/R.b4d99f21220d57b48e49316dd19b97f8?rik=VN1ED5s1ngnkMg&pid=ImgRaw&r=0', 'HLA'),
+    ('Nina Girard', '0711020304', 'nina.girard@consultants-solutec.fr', 'https://nina.com/photo', NULL, 'Marie Durand', 3, 'disponible', 2, 'https://th.bing.com/th/id/R.c1f8819355a4fd65976e6cc7eedf0c49?rik=AVdvU2cIjZeRUw&pid=ImgRaw&r=0', 'NGI'),
+    ('Léo Mercier', '0721020304', 'leo.mercier@consultants-solutec.fr', 'https://leo.com/photo', 7, 'Alain Martin', 5, 'enMission', 3, 'https://www.studio1822.fr/wp-content/uploads/2018/12/MG_6557-pp-2-1.jpg', 'LME'),
+    ('Sophie Robert', '0731020304', 'sophie.robert@consultants-solutec.fr', 'https://sophie.com/photo', NULL, 'Sophie Petit', 6, 'disponible', 4, 'https://th.bing.com/th/id/R.8db8651116d0a8af035b5a908cfc938c?rik=1XsFK5xMARd%2fjw&pid=ImgRaw&r=0', 'SRO'),
+    ('Raphaël Dupont', '0741020304', 'raphael.dupont@consultants-solutec.fr', 'https://raphael.com/photo', 8, 'Paul Lefevre', 8, 'enMission', 5, 'https://th.bing.com/th/id/OIP.vHYY99VaLn9JtCcScnxXmwHaJ4?rs=1&pid=ImgDetMain', 'RDU'),
+    ('Manon Lefevre', '0751020304', 'manon.lefevre@consultants-solutec.fr', 'https://manon.com/photo', NULL, 'Jean Dupont', 1, 'disponible', 6, 'https://th.bing.com/th/id/OIP.e1XBjiZZaL7dLUyWZcIcuAHaLH?rs=1&pid=ImgDetMain', 'MLE'),
+    ('Victor Henry', '0761020304', 'victor.henry@consultants-solutec.fr', 'https://victor.com/photo', 9, 'Marie Durand', 4, 'enMission', 7, 'https://th.bing.com/th/id/OIP.faR3wfFLlZA53YXfqOsprgHaLH?rs=1&pid=ImgDetMain', 'VHE'),
+    ('Clémence Bonnet', '0771020304', 'clemence.bonnet@consultants-solutec.fr', 'https://clemence.com/photo', NULL, 'Alain Martin', 7, 'disponible', 1, 'https://th.bing.com/th/id/OIP.3ErzKhPhpmC6sdy7Axrz4AHaLE?rs=1&pid=ImgDetMain', 'CBO'),
+    ('Aurélien Fournier', '0781020304', 'aurelien.fournier@consultants-solutec.fr', 'https://aurelien.com/photo', 10, 'Sophie Petit', 5, 'enMission', 2, 'https://www.portraitprofessionnel.fr/wp-content/uploads/2022/04/Photographe_trombinoscope_entreprise_a_Paris.jpg', 'AFO'),
+    ('Margaux Blanchard', '0791020304', 'margaux.blanchard@consultants-solutec.fr', 'https://margaux.com/photo', NULL, 'Paul Lefevre', 2, 'disponible', 3, 'https://www.arteplus.ch/wp-content/uploads/2020/10/Portrait-CV-Corporate-Linkedin-Curriculum-Vitae-Biel-Bienne-Neuchatel-Jura-Berne-Arteplus-Possagno-Hasselblad-1009b.jpg', 'MBL');
+
+
+
+
