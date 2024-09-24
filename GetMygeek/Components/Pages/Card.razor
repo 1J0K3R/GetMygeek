@@ -35,7 +35,8 @@
             <MudButton Variant="Variant.Filled" Color="Color.Success" Class="ml-5 mr-5">Libre</MudButton>
             }
 
-        <MudButton Variant="Variant.Filled" Color="Color.Warning" Class="ml-5 mr-5" @onclick="async () => await OpenDDCInformationAsync()">DDC</MudButton>
+        @* <MudButton Variant="Variant.Filled" Color="Color.Warning" Class="ml-5 mr-5" @onclick="async () => await OpenDDCInformationAsync()">DDC</MudButton> *@
+        <MudButton Href="https://chatgpt.com/" Target="_blank" Variant="Variant.Filled" Color="Color.Warning" Class="ml-5 mr-5">DDC</MudButton>
     </MudCardContent>
         
     <MudMessageBox @ref="_mudMessageBox" Title="Dossier De Compétences">
