@@ -27,15 +27,15 @@
     <MudCardContent Class="d-flex justify-center">
         @if (Profil.Disponibilite == "enMission")
         {
-            <MudButton Variant="Variant.Filled" Color="Color.Error" Class="ml-5 mr-5" @onclick="async () => await OpenMissionInformationAsync()">En Mission</MudButton>
+            <MudButton Variant="Variant.Filled" Color="Color.Error" Class="ml-5 mr-5" Style="width: 16vh;" @onclick="async () => await OpenMissionInformationAsync()">En Mission</MudButton>
         }
         else if (Profil.Disponibilite == "disponible")
         {
-            <MudButton Variant="Variant.Filled" Color="Color.Success" Class="ml-5 mr-5" >Libre</MudButton>
+            <MudButton Variant="Variant.Filled" Color="Color.Success" Class="ml-5 mr-5" Style="width: 16vh;">Libre</MudButton>
         }
         else
         {
-            <MudButton Variant="Variant.Filled" Color="Color.Error" Class="ml-5 mr-5">Une erreure est survenue !</MudButton>
+            <MudButton Variant="Variant.Filled" Color="Color.Error" Class="ml-5 mr-5" Style="width: 16vh;">Une erreure est survenue !</MudButton>
         }
 
 
