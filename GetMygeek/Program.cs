@@ -11,7 +11,7 @@ builder.Services.AddMudServices();
 string connectionStringDB = Environment.GetEnvironmentVariable("GetMyGeekDBConnectionString");
 
 builder.Services.AddScoped<IDatabaseService>(sp =>
-    new DatabaseService(connectionStringDB));//"Host=aws-0-eu-west-3.pooler.supabase.com;Username=postgres.wsvmdcvhflgudukhnull;Password=GetMyGeek@2024;Database=postgres"
+    new DatabaseService(connectionStringDB));
 
 // Add services to the container.
 builder.Services.AddRazorComponents()
