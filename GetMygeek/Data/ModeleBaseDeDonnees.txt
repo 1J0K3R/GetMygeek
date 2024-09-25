@@ -1,31 +1,31 @@
 CREATE TABLE Consultant (
-    IdConsultant INT AUTO_INCREMENT PRIMARY KEY,
-    Nom VARCHAR(50) NOT NULL,
-    tel VARCHAR(10),
-    mail VARCHAR(100),
-    ddcUrl VARCHAR(400),
-    idMission INT,
-    ResponsableCarriere VARCHAR(50),
+    IdConsultant BIGINT PRIMARY KEY GENERATED ALWAYS AS IDENTITY,
+    Nom text NOT NULL,
+    tel text,
+    mail text,
+    ddcUrl text,
+    idMission BIGINT,
+    ResponsableCarriere text,
     anciennete INT,
-    disponibilite VARCHAR(20),
-    idPrefDomain INT,
-    ImageUrl VARCHAR(400),
-    Trigramme VARCHAR(5),
+    disponibilite text,
+    idPrefDomain BIGINT,
+    ImageUrl text,
+    Trigramme text,
     FOREIGN KEY (idMission) REFERENCES Mission(idMission),
     FOREIGN KEY (idPrefDomain) REFERENCES PreferenceDomaine(idPrefDomain)
 );
 
 
 CREATE TABLE Mission (
-    idMission INT AUTO_INCREMENT PRIMARY KEY,
-    entreprise VARCHAR(50),
-    responsableMission VARCHAR(50),
-    ficheDePoste VARCHAR(400),
+    idMission BIGINT PRIMARY KEY GENERATED ALWAYS AS IDENTITY,
+    entreprise text,
+    responsableMission text,
+    ficheDePoste text
 );
 
 
 CREATE TABLE PreferenceDomaine (
-    idPrefDomain INT AUTO_INCREMENT PRIMARY KEY,
+    idPrefDomain BIGINT PRIMARY KEY GENERATED ALWAYS AS IDENTITY,
     dev BOOLEAN,
     fonctionnel BOOLEAN,
     infra BOOLEAN
@@ -60,7 +60,7 @@ VALUES
     ('Volvo', 'Sophie Petit', 'https://volvo.com/ficheDePoste');
 
 
-INSERT INTO Consultant (Nom, tel, mail, ddc, idMission, ResponsableCarriere, anciennete, disponibilite, idPrefDomain, photo, Trigramme)
+INSERT INTO Consultant (Nom, tel, mail, ddcurl, idMission, ResponsableCarriere, anciennete, disponibilite, idPrefDomain, ImageUrl, Trigramme)
 VALUES
     ('Benoît Chardon', '0601020304', 'benoit.chardon@consultants-solutec.fr', 'https://benoit.com/photo', 1, 'Jean Dupont', 5, 'enMission', 1, 'https://th.bing.com/th/id/R.5f075c720674a279c5790415cc4b83dc?rik=0hUwWG7mvf10DA&pid=ImgRaw&r=0', 'BCH'),
     ('Alice Dupuis', '0611020304', 'alice.dupuis@consultants-solutec.fr', 'https://alice.com/photo', NULL, 'Marie Durand', 2, 'disponible', 2, 'https://th.bing.com/th/id/OIP.Sxi58lqoVlw_v9PmuMEP3AHaJ4?rs=1&pid=ImgDetMain', 'ADU'),
