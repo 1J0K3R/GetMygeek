@@ -41,11 +41,9 @@
 
     private async Task<IEnumerable<Consultant>> GetListeProfilBySqlRequestAsync()
     {      
-        // A partir des paramètres de ResearchQuery on efféctue l'appelle SQL
-        // researchQuery.GenerateSQLRequest();
         try
         {
-            return await DatabaseService.GetAllConsultantsAsync();     
+            return await DatabaseService.GetConsultantsResearchBar(researchQuery);     
         }
         catch (Exception ex)
         {
