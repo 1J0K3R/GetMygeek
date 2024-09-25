@@ -1,10 +1,13 @@
-﻿@using GetMygeek.Models
+﻿@using GetMygeek.Data
+@using GetMygeek.Data.ORM
+@using GetMygeek.Models
 @using System.Text.Json
+@inject IDatabaseService DatabaseService
 
 <MudGrid Spacing="10" Justify="Justify.Center">
-    @if (listeProfil != null && listeProfil.Consultants.Count > 0)
+    @if (tableConsultant != null && tableConsultant.Count() > 0)
     {
-        @foreach (var profil in listeProfil.Consultants)
+        @foreach (var profil in tableConsultant)
         {
             <MudItem>
                 <Card Profil="@profil"/>
@@ -25,10 +28,7 @@
     [Parameter]
     public ResearchQuery? researchQuery { get; set; }
 
-    /// <summary>
-    /// L'objet contenant tous les profils'
-    /// </summary>
-    private ListeProfil listeProfil;
+    private IEnumerable<Consultant> tableConsultant;
 
     /// <summary>
     /// Methode d'initialisation de l'objet
@@ -37,20 +37,17 @@
     protected override async Task OnInitializedAsync()
     {
         // Lire et désérialiser le fichier JSON lors de l'initialisation
-        listeProfil = await GetListeProfilBySqlRequestAsync();
+        tableConsultant = await GetListeProfilBySqlRequestAsync();
     }
 
     // Méthode pour lire et désérialiser le fichier JSON
-    private async Task<ListeProfil> GetListeProfilBySqlRequestAsync()
-    {
+    private async Task<IEnumerable<Consultant>> GetListeProfilBySqlRequestAsync()
+    {      
         // A partir des paramètres de ResearchQuery on efféctue l'appelle SQL
         // researchQuery.GenerateSQLRequest();
         try
         {
-            FileStream fileStream = File.OpenRead("Data/Phototeque.json");
-            ListeProfil listeProfil = await JsonSerializer.DeserializeAsync<ListeProfil>(fileStream);
-
-            return listeProfil;
+            return await DatabaseService.GetAllConsultantsAsync();     
         }
         catch (Exception ex)
         {

@@ -38,10 +38,17 @@ public partial class Card
     protected override async Task OnInitializedAsync()
     {
         // Lire et désérialiser le fichier JSON lors de l'initialisation
-        preferenceDomainString = await GetPreferenceDomainBySqlRequestAsync(Profil.IdPrefDomaine);
+        if(Profil.IdPrefDomain is null)
+        {
+            new Exception("L'id de preference domaine est null");
+        }
+        else
+        {
+            preferenceDomainString = await GetPreferenceDomainBySqlRequestAsync(Profil.IdPrefDomain);
+        }
     }
 
-    private async Task<string> GetPreferenceDomainBySqlRequestAsync(int IdPrefDomain)
+    private async Task<string> GetPreferenceDomainBySqlRequestAsync(long? IdPrefDomain)
     {
         // Récupérer les préférence de domaine du consultant en interrogeant la base sql avec i 'ID de preference du domaine 
         PreferenceDomain resultPreferenceDomain = new()

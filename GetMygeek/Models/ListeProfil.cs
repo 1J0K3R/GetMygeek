@@ -3,5 +3,5 @@
 namespace GetMygeek.Models;
 public class ListeProfil
 {
-    public List<Consultant> Consultants { get; set; }
+    public IEnumerable<Consultant> Consultants { get; set; }
 }

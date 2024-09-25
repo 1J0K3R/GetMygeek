@@ -1,10 +1,17 @@
 using GetMygeek.Components;
+using GetMygeek.Data;
 using MudBlazor.Services;
 
 var builder = WebApplication.CreateBuilder(args);
 
 // Add MudBlazor services
 builder.Services.AddMudServices();
+
+// Ajouter l'injection de dépendance pour DatabaseService
+string connectionStringDB = Environment.GetEnvironmentVariable("GetMyGeekDBConnectionString");
+
+builder.Services.AddScoped<IDatabaseService>(sp =>
+    new DatabaseService(connectionStringDB));//"Host=aws-0-eu-west-3.pooler.supabase.com;Username=postgres.wsvmdcvhflgudukhnull;Password=GetMyGeek@2024;Database=postgres"
 
 // Add services to the container.
 builder.Services.AddRazorComponents()
