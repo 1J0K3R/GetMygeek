@@ -36,11 +36,9 @@
     /// <returns></returns>
     protected override async Task OnInitializedAsync()
     {
-        // Lire et désérialiser le fichier JSON lors de l'initialisation
         tableConsultant = await GetListeProfilBySqlRequestAsync();
     }
 
-    // Méthode pour lire et désérialiser le fichier JSON
     private async Task<IEnumerable<Consultant>> GetListeProfilBySqlRequestAsync()
     {      
         // A partir des paramètres de ResearchQuery on efféctue l'appelle SQL
@@ -51,7 +49,7 @@
         }
         catch (Exception ex)
         {
-            Console.WriteLine($"Erreur lors de la lecture du fichier JSON : {ex.Message}");
+            Console.WriteLine($"Erreur lors de la écupération de la table consultant de la base de données {ex.Message}");
             return null;
         }
     }
