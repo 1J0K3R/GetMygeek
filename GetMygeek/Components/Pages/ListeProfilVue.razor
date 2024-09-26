@@ -31,12 +31,12 @@
     private IEnumerable<Consultant> tableConsultant;
 
     /// <summary>
-    /// Methode d'initialisation de l'objet
+    /// Cette méthode est appelée chaque fois que les paramètres du composant changent (par exemple, quand la recherche est mise à jour).
     /// </summary>
-    /// <returns></returns>
-    protected override async Task OnInitializedAsync()
+    protected override async Task OnParametersSetAsync()
     {
         tableConsultant = await GetListeProfilBySqlRequestAsync();
+        StateHasChanged();
     }
 
 
