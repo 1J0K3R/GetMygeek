@@ -39,11 +39,16 @@
         tableConsultant = await GetListeProfilBySqlRequestAsync();
     }
 
+
+    /// <summary>
+    /// Méthode permettant de récupérer les éléments de la base de données correspondant aux filtres présents dans la barre de recherche.
+    /// </summary>
+    /// <returns></returns>
     private async Task<IEnumerable<Consultant>> GetListeProfilBySqlRequestAsync()
     {      
         try
         {
-            return await DatabaseService.GetConsultantsResearchBar(researchQuery);     
+            return await DatabaseService.GetConsultantsResearchBar(researchQuery);
         }
         catch (Exception ex)
         {

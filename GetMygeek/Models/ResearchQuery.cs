@@ -44,7 +44,7 @@ public class ResearchQuery
             
 
             if(Input!=""){
-                SQLRequest+="WHERE C.Nom LIKE '%" + Input + "%' ";
+                SQLRequest+="WHERE unaccent(C.Nom) ILIKE unaccent('%" + Input + "%') ";
                 firstCondition=false;
             }
 
