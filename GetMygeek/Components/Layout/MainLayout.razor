@@ -7,11 +7,9 @@
 
 <MudLayout>
     <MudAppBar Elevation="1">
-        <MudIconButton Icon="@Icons.Material.Filled.Menu" Color="Color.Inherit" Edge="Edge.Start" OnClick="@((e) => DrawerToggle())" />
-        <MudText Typo="Typo.h5" Class="ml-3">Application</MudText>
+        <MudText Typo="Typo.h5" Class="ml-3">Get My Geek</MudText>
         <MudSpacer />
         <MudIconButton Icon="@(DarkLightModeButtonIcon)" Color="Color.Inherit" OnClick="@DarkModeToggle" />
-        <MudIconButton Icon="@Icons.Material.Filled.MoreVert" Color="Color.Inherit" Edge="Edge.End" />
         <MudImage src="images/solutec-logo.png" Alt="Solutech logo" Style="Height:90%; Width:Auto;"/>
     </MudAppBar>
 
@@ -47,12 +45,6 @@
             };
 
         _drawerOpen = false;
-    }
-
-
-    private void DrawerToggle()
-    {
-        _drawerOpen = !_drawerOpen;
     }
 
     private void DarkModeToggle()
