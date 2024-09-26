@@ -1,15 +1,15 @@
 ﻿namespace GetMygeek.Models;
-public class ResearchQuery
+public class ParametreRecherche
 {
     /// <summary>
     /// Le contenu du champs rechercher.
     /// </summary>
-    public string Input { get; set; } = null;
+    public string NomRecherche { get; set; } = null;
 
     /// <summary>
     /// La disponibilite du consultant recherche. Peut prendre les valeurs null, disponible, enMission.
     /// </summary>
-    public string Available { get; set; } = null;
+    public string Disponibilite { get; set; } = null;
 
     /// <summary>
     /// L'anciennete minimale du consultant recherche.
@@ -19,11 +19,11 @@ public class ResearchQuery
     /// <summary>
     /// Une liste des types de missions recherchees par le consultant.
     /// </summary>
-    public IEnumerable<string> ProfilesSelected { get; set; } = new HashSet<string>() { };
+    public IEnumerable<string> ProfilesSelectionne { get; set; } = new HashSet<string>() { };
 
     public bool IsImplement()
     {
-        if (Input is not null || Available is not null || Anciennete is not null || ProfilesSelected.Count()>0)
+        if (NomRecherche is not null || Disponibilite is not null || Anciennete is not null || ProfilesSelectionne.Count()>0)
         {
             return true;
         }else 
@@ -34,8 +34,8 @@ public class ResearchQuery
 
     public void ResetResearchParam()
     {
-        Input = null;
-        Available = null;
+        NomRecherche = null;
+        Disponibilite = null;
         Anciennete = null;
     }
 
@@ -47,15 +47,15 @@ public class ResearchQuery
         string SQLRequest = "SELECT C.* FROM Consultant C JOIN PreferenceDomaine P ON C.idPrefDomain = P.idPrefDomain ";
         bool firstCondition = true;
 
-        if(Input!=null || Available!=null || Anciennete!=null || ProfilesSelected.Count()!=0){
+        if(NomRecherche!=null || Disponibilite!=null || Anciennete!=null || ProfilesSelectionne.Count()!=0){
             
 
-            if(Input!=""){
-                SQLRequest+="WHERE unaccent(C.Nom) ILIKE unaccent('%" + Input + "%') ";
+            if(NomRecherche!=""){
+                SQLRequest+="WHERE unaccent(C.Nom) ILIKE unaccent('%" + NomRecherche + "%') ";
                 firstCondition=false;
             }
 
-            if(Available!=null){
+            if(Disponibilite!=null){
                 if(!firstCondition){
                     SQLRequest+="AND ";
                 }
@@ -63,7 +63,7 @@ public class ResearchQuery
                     SQLRequest+="WHERE ";
                     firstCondition=false;
                 }
-                SQLRequest+= "C.disponibilite= '" + Available + "' ";
+                SQLRequest+= "C.disponibilite= '" + Disponibilite + "' ";
             }
             if(Anciennete!=null){
                 if(!firstCondition){
@@ -75,8 +75,8 @@ public class ResearchQuery
                 }
                 SQLRequest+= "C.anciennete>=" + Anciennete + " ";
             }
-            if(ProfilesSelected.Count()!=0){
-                if(ProfilesSelected.Contains("Dev")){
+            if(ProfilesSelectionne.Count()!=0){
+                if(ProfilesSelectionne.Contains("Dev")){
                     if(!firstCondition){
                         SQLRequest+="AND ";
                     }
@@ -86,7 +86,7 @@ public class ResearchQuery
                     }
                     SQLRequest+= "P.dev=true ";
                 }
-                if(ProfilesSelected.Contains("Fonctionnel")){
+                if(ProfilesSelectionne.Contains("Fonctionnel")){
                     if(!firstCondition){
                         SQLRequest+="AND ";
                     }
@@ -96,7 +96,7 @@ public class ResearchQuery
                     }
                     SQLRequest+= "P.fonctionnel=true ";
                 }
-                if(ProfilesSelected.Contains("Infrastructures")){
+                if(ProfilesSelectionne.Contains("Infrastructures")){
                     if(!firstCondition){
                         SQLRequest+="AND ";
                     }

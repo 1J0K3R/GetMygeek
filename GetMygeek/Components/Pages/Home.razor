@@ -15,14 +15,14 @@
     /// <summary>
     /// L'objet representant la recherche lancee par l'utilisateur
     /// </summary>
-    public ResearchQuery researchQuery = new();
+    public ParametreRecherche researchQuery = new();
 
     /// <summary>
     /// Cette méthode est appelée lorsque la recherche est déclenchée dans le composant enfant
     /// Permet la récupération d'un objet retournée par l'enfant
     /// </summary>
     /// <param name="updatedResearchQuery"></param>
-    private void UpdateResearchQuery(ResearchQuery updatedResearchQuery)
+    private void UpdateResearchQuery(ParametreRecherche updatedResearchQuery)
     {
         researchQuery = updatedResearchQuery;
         StateHasChanged();

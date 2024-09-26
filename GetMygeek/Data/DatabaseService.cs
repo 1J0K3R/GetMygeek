@@ -53,7 +53,7 @@ public class DatabaseService : IDatabaseService
         return consultants;
     }
 
-    public async Task<IEnumerable<Consultant>> GetConsultantsResearchBar(ResearchQuery researchQuery)
+    public async Task<IEnumerable<Consultant>> GetConsultantsResearchBar(ParametreRecherche researchQuery)
     {
         var consultants = new List<Consultant>();
 

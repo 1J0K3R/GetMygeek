@@ -15,8 +15,8 @@
         }
     }
     else
-    {
-        <MudText>Chargement des données...</MudText>
+    {       
+        <MudText Class="mt-10">Chargement des données...</MudText>
     }
 </MudGrid>
 
@@ -26,7 +26,7 @@
     /// Un parametre pour recuperer les parametres rentres dans la recherche
     /// </summary>
     [Parameter]
-    public ResearchQuery? researchQuery { get; set; }
+    public ParametreRecherche? researchQuery { get; set; }
 
     private IEnumerable<Consultant> tableConsultant;
 

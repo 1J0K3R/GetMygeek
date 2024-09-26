@@ -22,5 +22,5 @@ public interface IDatabaseService
     /// </summary>
     /// <param name="researchQuery">Contient tous les paramètres de recherche</param>
     /// <returns></returns>
-    Task<IEnumerable<Consultant>> GetConsultantsResearchBar(ResearchQuery researchQuery);
+    Task<IEnumerable<Consultant>> GetConsultantsResearchBar(ParametreRecherche researchQuery);
 }

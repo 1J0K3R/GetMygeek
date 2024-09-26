@@ -4,7 +4,7 @@
     <div Class="d-flex justify-center gap-4 align-self-center">
         <MudInput Placeholder="Rechercher un consultant"
                     Type="string"
-                    @bind-Value="researchQuery.Input"
+                    @bind-Value="researchQuery.NomRecherche"
                     style="width:350px; height:50px;"
                     Variant="Variant.Outlined"
                     Class="align-self-center" />
@@ -15,15 +15,16 @@
                     Style="height:50px; width:180px"
                     EndIcon="@Icons.Material.Filled.PersonSearch">Rechercher</MudButton>
 
-        <MudButton Variant="Variant.Filled"
-                   Color="Color.Dark"
-                   Style="height:50px; width:140px"
-                   EndIcon="@Icons.Material.Filled.Refresh"
-                   OnClick="@ResetResearchParam">Reset</MudButton>
+    <MudIconButton Icon="@Icons.Material.Filled.Refresh"
+                    Variant="Variant.Filled"
+                    Color="Color.Dark"
+                    Size="Size.Small"
+                    Style="height:50px; width:50px"
+                    OnClick="@ResetResearchParam" />
     </div>
 
     <div Class="d-flex justify-center gap-4 align-self-center" Style="max-width: 1000px;">
-        <MudSelect @bind-Value="researchQuery.Available"
+        <MudSelect @bind-Value="researchQuery.Disponibilite"
                     Label="Disponibilite"
                     Variant="Variant.Outlined"
                     Style="width:250px;">
@@ -39,7 +40,7 @@
 
         <MudTextField @bind-Value="researchQuery.Anciennete" Label="Anciennete minimale" Variant="Variant.Outlined" Style="width:250px" />
 
-        <MudSelect T="string" Label="Mission recherchee" Variant="Variant.Outlined" MultiSelection="true" @bind-SelectedValues="researchQuery.ProfilesSelected" Style="width:250px;">
+        <MudSelect T="string" Label="Mission recherchee" Variant="Variant.Outlined" MultiSelection="true" @bind-SelectedValues="researchQuery.ProfilesSelectionne" Style="width:250px;">
             @foreach (var profile in profiles)
             {
                 <MudSelectItem T="string" Value="@profile">@profile</MudSelectItem>
@@ -54,13 +55,13 @@
     /// L'objet representant la recherche lancee par l'utilisateur
     /// </summary>
     [Parameter]
-    public ResearchQuery researchQuery { get; set;}
+    public ParametreRecherche researchQuery { get; set;}
 
     /// <summary>
     /// Un callback pour notifier le parent lorsque la recherche est déclenchée
     /// </summary>
     [Parameter]
-    public EventCallback<ResearchQuery> OnSearch { get; set; }
+    public EventCallback<ParametreRecherche> OnSearch { get; set; }
 
     /// <summary>
     /// Une variable permettant de changer l'affichage de la page quand on appuie sur rechercher
@@ -77,9 +78,9 @@
     /// </summary>
     private async Task onClickRechercher()
     {
-        if (string.IsNullOrEmpty(researchQuery.Input))
+        if (string.IsNullOrEmpty(researchQuery.NomRecherche))
         {
-            researchQuery.Input = "";
+            researchQuery.NomRecherche = "";
         }
         isInResearch = "height: 21vh;";
         StateHasChanged();
