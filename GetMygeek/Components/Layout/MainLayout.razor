@@ -7,7 +7,7 @@
 
 <MudLayout>
     <MudAppBar Elevation="1">
-        <MudText Typo="Typo.h5" Class="ml-3">Get My Geek</MudText>
+        <MudImage src="@(DarkLightModeGMGLogo)" Alt="GetMyGeek logo" Style="Height:60%; Width:Auto;"/>
         <MudSpacer />
         <MudIconButton Icon="@(DarkLightModeButtonIcon)" Color="Color.Inherit" OnClick="@DarkModeToggle" />
         <MudImage src="images/solutec-logo.png" Alt="Solutech logo" Style="Height:90%; Width:Auto;"/>
@@ -95,6 +95,12 @@
     {
         true => Icons.Material.Rounded.AutoMode,
         false => Icons.Material.Outlined.DarkMode,
+    };
+
+    public string DarkLightModeGMGLogo => _isDarkMode switch
+    {
+        true => "/images/logoGetMyGeekDark.png",
+        false => "/images/logoGetMyGeekLight.png",
     };
 }
 
