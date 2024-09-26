@@ -1,7 +1,5 @@
 ﻿using GetMygeek.Data.ORM;
 using Microsoft.AspNetCore.Components;
-using MudBlazor;
-using System.Reflection.Metadata.Ecma335;
 
 namespace GetMygeek.Components.Pages;
 public partial class Card

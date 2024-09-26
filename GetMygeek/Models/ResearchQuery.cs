@@ -32,6 +32,13 @@ public class ResearchQuery
         }
     }
 
+    public void ResetResearchParam()
+    {
+        Input = null;
+        Available = null;
+        Anciennete = null;
+    }
+
     /// <summary>
     /// Une méthode qui analyse le contenu des filtres et de la barre de recherche et génère une requete SQL correspondante.
     /// </summary>

@@ -14,6 +14,12 @@
                     Color="Color.Dark"
                     Style="height:50px; width:180px"
                     EndIcon="@Icons.Material.Filled.PersonSearch">Rechercher</MudButton>
+
+        <MudButton Variant="Variant.Filled"
+                   Color="Color.Dark"
+                   Style="height:50px; width:140px"
+                   EndIcon="@Icons.Material.Filled.Refresh"
+                   OnClick="@ResetResearchParam">Reset</MudButton>
     </div>
 
     <div Class="d-flex justify-center gap-4 align-self-center" Style="max-width: 1000px;">
@@ -80,5 +86,12 @@
 
         // Appel du callback pour notifier le parent
         await OnSearch.InvokeAsync(researchQuery);
+    }
+
+    private async Task ResetResearchParam()
+    {
+        researchQuery.ResetResearchParam();
+        onClickRechercher();
+        StateHasChanged();
     }
 }
