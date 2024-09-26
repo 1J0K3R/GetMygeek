@@ -1,5 +1,6 @@
 ﻿using GetMygeek.Data.ORM;
 using GetMygeek.Models;
+using Microsoft.VisualBasic;
 using Npgsql;
 
 namespace GetMygeek.Data;
@@ -90,5 +91,33 @@ public class DatabaseService : IDatabaseService
         }
 
         return consultants;
+    }
+
+    public async Task<Mission> GetMissionAsync(long? idMission)
+    {
+        if (idMission == null) throw new ArgumentNullException(nameof(idMission));
+
+        // Créer une connexion à la base de données
+        await using var connection = new NpgsqlConnection(_connectionString);
+        await connection.OpenAsync();
+
+        string sql = $"SELECT * FROM mission WHERE mission.idmission = {idMission}";
+
+        await using var command = new NpgsqlCommand(sql, connection);
+        await using var reader = await command.ExecuteReaderAsync();
+
+        Mission mission = new();
+
+
+        while (await reader.ReadAsync())
+        {
+            // Créer un objet Consultant pour chaque ligne de résultats
+            mission.IdMission = reader.GetInt64(0);
+            mission.Entreprise = reader.GetString(1);
+            mission.ResponsableMission = reader.GetString(2);
+            mission.FicheDePoste = reader.GetString(3);
+        }
+
+        return mission;
     }
 }

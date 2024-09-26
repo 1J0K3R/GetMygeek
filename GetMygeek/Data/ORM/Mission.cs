@@ -4,12 +4,7 @@ public class Mission
     /// <summary>
     /// Id de la mission
     /// </summary>
-    public string Id { get; set; }
-
-    /// <summary>
-    /// Id du consultant de la mission
-    /// </summary>
-    public string IdConsultant { get; set; }
+    public long IdMission { get; set; }
 
     /// <summary>
     /// Entreprise au sein de laquelle est effectuée la mission

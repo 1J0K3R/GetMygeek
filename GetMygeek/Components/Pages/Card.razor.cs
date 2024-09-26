@@ -28,7 +28,7 @@ public partial class Card
     /// <returns></returns>
     public async Task OpenMissionInformationAsync()
     {
-        await missionPopup.ShowAsync();
+        await missionPopup.ShowAsync(Profil.IdMission);
     }
 
     /// <summary>

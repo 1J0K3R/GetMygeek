@@ -1,4 +1,6 @@
-﻿@using GetMygeek.Data.ORM
+﻿@using GetMygeek.Data
+@using GetMygeek.Data.ORM
+@inject IDatabaseService DatabaseService
 
 <MudMessageBox @ref="mudMessageBox" Title="Description de la mission">
     <MessageContent>
@@ -37,26 +39,17 @@
     /// Permet au code appellant d'afficher la Popup
     /// </summary>
     /// <returns></returns>
-    public async Task ShowAsync()
+    public async Task ShowAsync(long? idMission)
     {
-        Mission = await GetMissionBySqlRequestAsync();
+        Mission = await GetMissionBySqlRequestAsync(idMission);
 
         await mudMessageBox.ShowAsync();
     }
 
-    private async Task<Mission> GetMissionBySqlRequestAsync()
+    private async Task<Mission> GetMissionBySqlRequestAsync(long? idMission)
     {
         // Récupération de la mission avec l'IdConsultant
-
-        // Implémentation de la mission 
-        Mission resultMission = new()
-        {
-            Id = "123456789",
-            IdConsultant = "23456789",
-            Entreprise = "Solutec",
-            ResponsableMission = "Benoit l'Ingénieur d'Affaire",
-            FicheDePoste = "Description du poste",
-        };
+        Mission resultMission = await DatabaseService.GetMissionAsync(idMission);
 
         return resultMission;
     }

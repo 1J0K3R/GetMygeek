@@ -7,10 +7,10 @@
 <MudGrid Spacing="10" Justify="Justify.Center">
     @if (tableConsultant != null && tableConsultant.Count() > 0)
     {
-        @foreach (var profil in tableConsultant)
+        @foreach (var consultant in tableConsultant)
         {
             <MudItem>
-                <Card Profil="@profil"/>
+                <Card Profil="@consultant" />
             </MudItem>
         }
     }
