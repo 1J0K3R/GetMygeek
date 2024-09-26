@@ -54,10 +54,17 @@ public partial class Card
         PreferenceDomain resultPreferenceDomain = new()
         {
             IdPrefDomain = IdPrefDomain,
-            Dev = true,
-            Fonctionnel = true,
-            Infra = true
         };
+
+        if(IdPrefDomain == 1 || IdPrefDomain == 4 || IdPrefDomain == 6 || IdPrefDomain == 7){
+                resultPreferenceDomain.Dev=true;
+            }
+        if(IdPrefDomain == 2 || IdPrefDomain == 4 || IdPrefDomain == 5 || IdPrefDomain == 7){
+            resultPreferenceDomain.Fonctionnel=true;
+        }
+        if(IdPrefDomain == 3 || IdPrefDomain == 5 || IdPrefDomain == 6 || IdPrefDomain == 7){
+            resultPreferenceDomain.Infra=true;
+        }
 
         return ConstruirePreferenceString(resultPreferenceDomain);
     }
