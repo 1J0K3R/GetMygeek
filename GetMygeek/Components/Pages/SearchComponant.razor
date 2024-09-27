@@ -73,6 +73,9 @@
     /// </summary>
     private string[] profiles = { "Dev", "Fonctionnel", "Infrastructures" };
 
+
+    private bool isFirstResearch {get; set;} = true;
+
     /// <summary>
     /// La methode appelee quand on clique sur rechercher. Met a jour l'affichage, et genere la requete SQL liee aux champs saisis.
     /// </summary>
@@ -83,6 +86,7 @@
             researchQuery.NomRecherche = "";
         }
         isInResearch = "height: 21vh;";
+        isFirstResearch=false;
         StateHasChanged();
 
         // Appel du callback pour notifier le parent
@@ -92,7 +96,9 @@
     private async Task ResetResearchParam()
     {
         researchQuery.ResetResearchParam();
-        onClickRechercher();
+        if(!isFirstResearch){
+            onClickRechercher();
+        }
         StateHasChanged();
     }
 }

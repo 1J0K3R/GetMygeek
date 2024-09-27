@@ -37,6 +37,7 @@ public class ParametreRecherche
         NomRecherche = null;
         Disponibilite = null;
         Anciennete = null;
+        ProfilesSelectionne=new HashSet<string>();
     }
 
     /// <summary>
